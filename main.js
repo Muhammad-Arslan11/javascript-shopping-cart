@@ -47,6 +47,9 @@ let shopItems = [
   }
 ]
 
+// create a bucket for Items
+ let bucket = [];
+
 
 
 let quantity = 0; // quantity: for product quantity
@@ -81,17 +84,71 @@ generateCard();
 
 // increment quantity
 function increment(id) {
+  let itemId = id;
+   // Find the item in the bucket array
+   let itemIndex = bucket.findIndex((elem) => elem.id === itemId);
+
+  if(itemIndex === -1){
+    // push the id and quantity of item inside the bucket
+      bucket.push({
+         id: itemId,
+         count: 1, 
+      });
+    }
+    else{
+    // If item with given id is found, increment its count
+    bucket[itemIndex].count += 1;
+    }
   // console.log(id)
-quantity += 1;
-  // update the quantity
+    console.log(bucket);
+
+ 
 }
 
 // decrement quantity
-function decrement(e) {
+function decrement(id) {
 
-  if (quantity > 0) {
-    quantity -= 1;
-    // update the quantity
+  let itemId = id;
+  // Find the item in the bucket array
+  let itemIndex = bucket.findIndex((elem) => elem.id === itemId);
 
- }
+ if(itemIndex === -1){
+   return;
+  } 
+ if(bucket[itemIndex].count === 0){
+  return;
+} 
+   
+   else{
+   // If item with given id is found, increment its count
+   bucket[itemIndex].count -= 1;
+   }
+   // console.log(id)
+   console.log(bucket);
 }
+
+
+// function decrement(id) {
+//   let itemId = id;
+
+//   // Find the item in the bucket array
+//   let itemIndex = bucket.findIndex((elem) => elem.id === itemId);
+
+//   // Check if itemIndex is -1 (item not found in bucket)
+//   if (itemIndex === -1) {
+//     console.log("Item not found in bucket");
+//     return;
+//   }
+
+//   // Check if count is already 0
+//   if (bucket[itemIndex].count === 0) {
+//     console.log("Count is already 0, cannot decrement further");
+//     return;
+//   }
+
+//   // Decrement the count
+//   bucket[itemIndex].count -= 1;
+
+//   // Log the updated bucket array
+//   console.log(bucket);
+// }
