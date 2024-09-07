@@ -52,16 +52,21 @@ let shopItems = [
 ]
 
 // create a bucket for Items
- let bucket = [];
+ let bucket = JSON.parse(localStorage.getItem("data")) ||[];
 
 
 
-let quantity = 0; // quantity: for product quantity
+// let quantity = 0; // quantity: for product quantity
 // make a function to generate cards
 let generateCard = () => {
 
   // run a map function over the shopItems
   return (shop.innerHTML = shopItems.map((item) => {
+    // search for data here
+     let search = bucket.find((x) => x.id === item.id) || [];
+
+     console.log("bucket: ",bucket ,"search: ",search)
+   
     return (
       `<div class="item" id=${item.id}>
           <div><img src="${item.image}" width="${item.width}" height="${item.hieght}"></div>
@@ -73,7 +78,7 @@ let generateCard = () => {
             <p class="price">${item.price}</p>
             <div class="buttons">
               <i onclick="increment(${item.id})" class="bi bi-plus"id=></i>
-              <p class="quantity" id="quantity-${item.id}">${quantity}</p>
+              <p class="quantity" id="quantity-${item.id}">${search.quantity === undefined? 0: search.quantity}</p>
               <i onclick="decrement(${item.id})" class="bi bi-dash"${item.id}></i>
             </div>
           </div>
@@ -90,26 +95,24 @@ generateCard();
 function increment(id) {
   let itemId = id;
 
-   // Find the item in the bucket array
+  // Find the item in the bucket array
    let item = bucket.find((elem) => elem.id === itemId);
-  //  console.log(item);
 
-  if(item === undefined){
-    // push the id and quantity of item inside the bucket
-      bucket.push({
-         id: itemId,
-         quantity:1, 
-      });
-      
-    }
+if (!item) {
+  // If item not found, add it to bucket with quantity 1
+  bucket.push({ id: itemId, quantity: 1 });
+}
     else{
-    // If item with given id is found, increment its count
+    // If item with given id is found, increment its quantity
     item.quantity += 1;
     }
-  // console.log(id)
-    // console.log(bucket);
-    update(itemId);
 
+    // set the data into the local storage
+    localStorage.setItem("data", JSON.stringify(bucket));
+    // update UI
+    update(itemId);
+     // calculate
+       calculate();
  
 }
 
@@ -120,34 +123,32 @@ function decrement(id) {
   // Find the item in the bucket array
   let item = bucket.find((elem) => elem.id === itemId);
 
- if(item === undefined){
-   return;
-  } 
- if(item.quantity === 0){
-  return;
-} 
+  if (!item || item.quantity === 0) {
+    return; // If item not found or quantity is already 0, return
+  }
    
    else{
-   // If item with given id is found, increment its count
+   // If item with given id is found, increment its quantity
    item.quantity -= 1;
    }
-   // console.log(id)
-  //  console.log(bucket);
+  // set the data into the local storage
+   localStorage.setItem("data", JSON.stringify(bucket));
+   // update UI
    update(itemId);
+   // calculate
    calculate();
 }
 
-// function to update the quantity
+// function to update the UI
  function update(id){
   let search = bucket.find((elem) => elem.id === id);
-  // console.log(search);
+  console.log(search);
   if(search){
     // update the textContent
     document.getElementById(`quantity-${id}`).textContent = search.quantity;
-
   }
-  calculate();
- }
+}
+
 
  // function to calculate total items in the cart 
    function calculate(){
@@ -155,4 +156,7 @@ function decrement(id) {
     document.getElementById("cartAmount").textContent = search;
     // console.log(search);
    }
+   calculate();
+
+   
 
