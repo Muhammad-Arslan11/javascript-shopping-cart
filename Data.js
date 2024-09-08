@@ -1,30 +1,48 @@
-let shopItemsData = [
+// data for shopItems
+ export let shopItems = [
   {
-    id: "jfhgbvnscs",
-    name: "Casual Shirt",
-    price: 45,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-1.jpg",
+    id: "0",
+    image: "./images/img-1.jpg",
+    hieght: "200px",
+    width: "220px",
+    name: "Casual Shirts",
+    details: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+    price: "$ 45",
+
   },
+
   {
-    id: "ioytrhndcv",
-    name: "Office Shirt",
-    price: 100,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-2.jpg",
+    id: "1",
+    image: "./images/img-2.jpg",
+    hieght: "200px",
+    width: "220px",
+    name: "Office Shirts",
+    details: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+    price: "$ 60",
+   
   },
+
+
   {
-    id: "wuefbncxbsn",
-    name: "T Shirt",
-    price: 25,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-3.jpg",
+    id: "2",
+    image: "./images/img-3.jpg",
+    hieght: "200px",
+    width: "220px",
+    name: "T-shirts",
+    details: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+    price: "$ 85",
+   
   },
+
   {
-    id: "thyfhcbcv",
+    id: "3",
+    image: "./images/img-4.jpg",
+    hieght: "200px",
+    width: "220px",
     name: "Mens Suit",
-    price: 300,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-4.jpg",
-  },
-];
+    details: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+    price: "$ 100",
+   
+  }
+]
+
