@@ -64,7 +64,7 @@ a {
   grid-template-columns: repeat(4, 223px);
   gap: 30px;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 1000px) {
@@ -82,37 +82,31 @@ a {
 .item {
   border: 2px solid #212529;
   border-radius: 4px;
-  height: 333px;
+}
+.item img {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
 }
 
-.desc {
+.details {
   display: flex;
   flex-direction: column;
   padding: 10px;
   gap: 10px;
-  flex-wrap: wrap;
 }
-/* .name, .details{
-  text-align: center;
-} */
 
 .price-quantity {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5px 0 5px;
-}
-.price{
-  font-weight: 700;
-  font-size: 25px;
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .bi-dash-lg {
